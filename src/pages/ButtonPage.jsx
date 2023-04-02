@@ -6,9 +6,9 @@ import {
   MdDeleteOutline,
   MdSave,
 } from "react-icons/md";
-import Button from "./components/Button";
+import Button from "../components/Button";
 
-function App() {
+function ButtonPage() {
   const [count, setCount] = useState(0);
   const handleClick = () => {
     setCount((count) => count + 1);
@@ -16,7 +16,7 @@ function App() {
   };
 
   return (
-    <div className="App text-black flex p-10 items-center justify-between">
+    <div className="ButtonPage text-black flex p-10 items-center justify-between">
       <Button primary rounded onMouseOver={handleClick}>
         <MdBookmark />
         Click Me!
@@ -41,4 +41,4 @@ function App() {
   );
 }
 
-export default App;
+export default ButtonPage;
