@@ -1,21 +1,27 @@
-import { useContext } from "react";
-import NavigationContext from "../context/navigation";
+import useNavigation from "../hooks/useNavigation";
+import classNames from "classnames";
 
-function Link({ to, children }) {
-  const { navigate } = useContext(NavigationContext);
+function Link({ to, children, className, activeClassName }) {
+  const { navigate, currentPath } = useNavigation();
 
   const handleClick = (e) => {
+    if (e.metaKey || e.ctrlKey) {
+      // open page on new tab
+      return;
+    }
     //prevent default reloading
     e.preventDefault();
-
     navigate(to);
   };
 
+  const classes = classNames(
+    "text-slate-700 transition font-medium cursor-pointer",
+    className,
+    // styling active link
+    currentPath === to && activeClassName
+  );
   return (
-    <a
-      className={`m-2 py-2 px-4 font-medium border rounded-md cursor-pointer bg-violet-600 text-blue-50 transition hover:bg-violet-500`}
-      onClick={handleClick}
-    >
+    <a href={to} className={classes} onClick={handleClick}>
       {children}
     </a>
   );
