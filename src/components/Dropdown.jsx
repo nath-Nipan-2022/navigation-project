@@ -22,7 +22,7 @@ const Dropdown = ({ options, onChange, selectedOption }) => {
 
     //cleanup function runs when component is removed
     return () => {
-      document.removeEventListener("click", handler);
+      document.removeEventListener("click", handler, true);
     };
   }, []);
 
