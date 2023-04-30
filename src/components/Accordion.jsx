@@ -15,15 +15,17 @@ const Accordion = ({ items }) => {
     let isOpen = expandedIndex === i;
 
     return (
-      <div key={i} className="w-80 border-b border-blue-50">
+      <div key={i} className="w-80 border border-gray-400">
         <h3
           onClick={() => handleClick(i)}
-          className="font-medium py-2 px-3 cursor-pointer transition bg-blue-200 hover:bg-blue-300 flex justify-between"
+          className="font-medium py-2 px-3 cursor-pointer hover:bg-gray-300 flex justify-between"
         >
           {item.label}
           {isOpen ? <MdKeyboardArrowDown /> : <MdChevronRight />}
         </h3>
-        {isOpen && <p className={"p-3 pt-1"}>{item.contents}</p>}
+        {isOpen && (
+          <p className={"p-3 pt-1 border-t border-gray-400"}>{item.contents}</p>
+        )}
       </div>
     );
   });
