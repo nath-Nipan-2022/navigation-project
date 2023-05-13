@@ -15,7 +15,7 @@ function Link({ to, children, className, activeClassName }) {
   };
 
   const classes = classNames(
-    "text-slate-700 transition font-medium cursor-pointer",
+    "transition font-medium",
     className,
     // styling active link
     currentPath === to && activeClassName
