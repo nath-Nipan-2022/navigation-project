@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Table from "./Table";
+import { GoArrowSmallUp, GoArrowSmallDown } from "react-icons/go";
 
 const SortableTable = (props) => {
   const [sortOrder, setSortOrder] = useState(null);
@@ -7,6 +8,12 @@ const SortableTable = (props) => {
   const { config, data } = props;
 
   const handleClick = (label) => {
+    if (sortBy && label !== sortBy) {
+      setSortBy(label);
+      setSortOrder("asc");
+      return;
+    }
+
     if (sortOrder === null) {
       setSortOrder("asc");
       setSortBy(label);
@@ -50,9 +57,12 @@ const SortableTable = (props) => {
         header: () => (
           <th
             onClick={() => handleClick(column.label)}
-            className="p-4 cursor-pointer"
+            className="cursor-pointer hover:bg-slate-100"
           >
-            {column.label}
+            <div className="p-1 flex items-center">
+              {getIcons(column.label, sortBy, sortOrder)}
+              {column.label}
+            </div>
           </th>
         ),
       };
@@ -63,4 +73,29 @@ const SortableTable = (props) => {
   return <Table {...props} config={updatedConfig} data={sortedData} />;
 };
 
+function getIcons(label, sortBy, sortOrder) {
+  //only change icon when it is clicked.
+  if (label !== sortBy) {
+    return (
+      <div>
+        <GoArrowSmallUp />
+        <GoArrowSmallDown />
+      </div>
+    );
+  }
+  if (sortOrder === "null") {
+    return (
+      <div>
+        <GoArrowSmallUp />
+        <GoArrowSmallDown />
+      </div>
+    );
+  }
+
+  if (sortOrder == "asc") {
+    return <GoArrowSmallUp />;
+  } else if (sortOrder == "desc") {
+    return <GoArrowSmallDown />;
+  }
+}
 export default SortableTable;
