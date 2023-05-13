@@ -12,7 +12,7 @@ const Table = ({ data, config }) => {
         //! here, we are declaring onclick for event header, which is inefficient!
 
         key={column.label}
-        // className="p-4 cursor-pointer"
+        className="p-4 py-5 cursor-pointer"
       >
         {column.label}
       </th>
@@ -20,12 +20,12 @@ const Table = ({ data, config }) => {
   });
 
   const renderRows = data.map((row, i) => {
-    const oddRowClass = i % 2 !== 0 ? "bg-fuchsia-100" : "";
+    const oddRowClass = i % 2 !== 0 ? "bg-fuchsia-100" : "bg-fuchsia-200";
 
     // Awesome method!
     const renderCells = config.map((column) => {
       return (
-        <td key={column.label} className=" p-2 px-3">
+        <td key={column.label} className="p-2 px-3">
           {column.render(row)}
         </td>
       );

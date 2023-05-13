@@ -5,6 +5,7 @@ import DropdownPage from "./pages/DropdownPage";
 import ButtonPage from "./pages/ButtonPage";
 import ModalPage from "./pages/ModalPage";
 import TablePage from "./pages/TablePage";
+import mesh from "./assets/mesh-gradient (1).png";
 
 const App = () => {
   return (
@@ -27,6 +28,10 @@ const App = () => {
           <TablePage />
         </Route>
       </main>
+
+      <figure className="fixed inset-0 -z-10">
+        <img src={mesh} alt="mesh" width={"100%"} />
+      </figure>
     </div>
   );
 };
