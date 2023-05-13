@@ -1,40 +1,50 @@
-const Table = ({ data }) => {
-  const renderHeaders = Object.values(data[0]).map((header, i) => {
+import { Fragment } from "react";
+
+const Table = ({ data, config }) => {
+  const renderHeaders = config.map((column) => {
+    if (column.header) {
+      return <Fragment key={column.label}>{column.header()}</Fragment>;
+    }
+
     return (
       <th
-        className=" border-b-2 border-slate-400 p-2 hover:bg-red-400  "
-        key={i}
+        // onClick={() => handleHeaderClick(column.label)}
+        //! here, we are declaring onclick for event header, which is inefficient!
+
+        key={column.label}
+        // className="p-4 cursor-pointer"
       >
-        {header}
+        {column.label}
       </th>
     );
   });
 
-  const renderRows = data.map((row) => {
-    if (!row.name) {
-      return "";
-    }
+  const renderRows = data.map((row, i) => {
+    const oddRowClass = i % 2 !== 0 ? "bg-fuchsia-100" : "";
+
+    // Awesome method!
+    const renderCells = config.map((column) => {
+      return (
+        <td key={column.label} className=" p-2 px-3">
+          {column.render(row)}
+        </td>
+      );
+    });
+
     return (
-      <tr key={row.name} className=" text-center text-gray-800">
-        <td className="p-2 hover:bg-red-300  border-b border-slate-400">
-          {row.name}
-        </td>
-        <td className="p-2 hover:bg-red-300  border-b border-slate-400">
-          {row.value}
-        </td>
-        <td className="p-2 hover:bg-red-300  border-b border-slate-400">
-          {row.type}
-        </td>
+      <tr key={row.id} className={`p-2 border-b border-white ${oddRowClass}`}>
+        {renderCells}
       </tr>
     );
   });
 
   return (
-    <table className="mx-auto table-auto w-72 bg-red-100 border-2 border-slate-500  cursor-pointer">
+    <table className="mx-auto table-auto border border-white w-96">
       <thead>
-        <tr>{renderHeaders}</tr>
+        <tr className="text-left border-b-2 border-white bg-slate-200">
+          {renderHeaders}
+        </tr>
       </thead>
-
       <tbody>{renderRows}</tbody>
     </table>
   );
