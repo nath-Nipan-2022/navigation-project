@@ -14,8 +14,8 @@ const Sidebar = () => {
       <Link
         key={link.label}
         to={link.path}
-        className="p-2 px-3 border-l-2 border-gray-200 hover:text-blue-500 hover:border-blue-600"
-        activeClassName={"font-bold  text-blue-500 border-blue-900"}
+        className="p-2 px-3 border-l-2 hover:text-blue-600 hover:bg-black/5"
+        activeClassName={"font-bold border-blue-600 text-blue-600"}
       >
         {link.label}
       </Link>
