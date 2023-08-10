@@ -1,4 +1,5 @@
 import Link from "./Link";
+import React from "react";
 
 const Sidebar = () => {
 	const links = [
@@ -8,6 +9,7 @@ const Sidebar = () => {
 		{ label: "Modal", path: "/modal" },
 		{ label: "Table", path: "/table" },
 		{ label: "Counter", path: "/counter" },
+		{ label: "SignUp", path: "/sign_up" },
 	];
 
 	const renderLinks = links.map((link) => {
@@ -15,15 +17,15 @@ const Sidebar = () => {
 			<Link
 				key={link.label}
 				to={link.path}
-				className='p-2 px-3 border-l-2 hover:text-blue-600 hover:bg-black/5'
-				activeClassName={"font-bold border-blue-600 text-blue-600"}
+				className="py-2.5 px-5 hover:text-blue-700 hover:bg-white"
+				activeClassName={"text-blue-700 bg-white"}
 			>
 				{link.label}
 			</Link>
 		);
 	});
 	return (
-		<div className='flex flex-col fixed top-4 left-0 w-36 p-2'>
+		<div className="flex flex-col fixed divide-y top-0 pt-10 left-0 w-36 h-screen border-r bg-gray-100">
 			{renderLinks}
 		</div>
 	);

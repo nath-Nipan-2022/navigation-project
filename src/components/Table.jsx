@@ -3,7 +3,7 @@ import { Fragment } from "react";
 const Table = ({ data, config }) => {
 	const renderHeaders = config.map((column) => {
 		if (column.header) {
-			return <Fragment key={column.label}>{column.header()}</Fragment>;
+						return <Fragment key={column.label}>{column.header()}</Fragment>;
 		}
 
 		return (
@@ -12,7 +12,7 @@ const Table = ({ data, config }) => {
 				//! here, we are declaring onclick for event header, which is inefficient!
 
 				key={column.label}
-				className="p-4 py-5 cursor-pointer"
+				className="p-4"
 			>
 				{column.label}
 			</th>
@@ -25,25 +25,23 @@ const Table = ({ data, config }) => {
 		// Awesome method!
 		const renderCells = config.map((column) => {
 			return (
-				<td key={column.label} className="p-2 px-3">
+				<td key={column.label} className="px-4 py-3">
 					{column.render(row)}
 				</td>
 			);
 		});
 
 		return (
-			<tr key={row.id} className={`p-2 border-b border-white ${oddRowClass}`}>
+			<tr key={row.id} className={`px-4 border-b border-white ${oddRowClass}`}>
 				{renderCells}
 			</tr>
 		);
 	});
 
 	return (
-		<table className="table-auto border border-white w-96">
+		<table className="table-auto border">
 			<thead>
-				<tr className="text-left border-b-2 border-white bg-slate-200">
-					{renderHeaders}
-				</tr>
+				<tr className="text-left  bg-[#f7f7f7]">{renderHeaders}</tr>
 			</thead>
 			<tbody>{renderRows}</tbody>
 		</table>

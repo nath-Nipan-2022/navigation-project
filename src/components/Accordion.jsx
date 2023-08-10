@@ -1,36 +1,46 @@
+import React from "react";
 import { useState } from "react";
-import { MdChevronRight, MdKeyboardArrowDown } from "react-icons/md";
+import {
+	MdChevronRight,
+	MdKeyboardArrowDown,
+	MdKeyboardArrowUp,
+} from "react-icons/md";
+
+import { useContext } from "react";
+import AccordionContext from "../context/accordionContext";
 
 const Accordion = ({ items }) => {
-	const [expandedIndex, setExpandedIndex] = useState(null);
+	const { expandedIndex, handleAccChange } = useContext(AccordionContext);
+	console.log({ expandedIndex });
 
 	const handleClick = (i) => {
-		setExpandedIndex((current) => {
-			if (current === i) return null; // if user clicks same accordion
-			return i;
-		});
+		// setExpandedIndex((current) => {
+		// 	if (current === i) return null; // if user clicks same accordion
+		// 	return i;
+		// });
+		handleAccChange({ index: i });
 	};
 	// render items
 	const renderItems = items.map((item, i) => {
 		let isOpen = expandedIndex === i;
 
 		return (
-			<div key={i} className="w-80 border border-gray-400">
+			<div key={i}>
 				<h3
 					onClick={() => handleClick(i)}
-					className="font-medium py-2 px-3 cursor-pointer hover:bg-gray-300 flex justify-between"
+					className="flex justify-between gap-4 p-4 font-medium cursor-pointer border-t bg-[#f7f7f7] text-slate-800 leading-6"
 				>
-					{item.label}
-					{isOpen ? <MdKeyboardArrowDown /> : <MdChevronRight />}
+					<span>{item.label}</span>
+					<span className="pt-1.5">
+						{isOpen ? <MdKeyboardArrowUp /> : <MdKeyboardArrowDown />}
+					</span>
 				</h3>
-				{isOpen && (
-					<p className={"p-3 pt-1 border-t border-gray-400"}>{item.contents}</p>
-				)}
+				{isOpen && <p className={"p-4 bg-white"}>{item.contents}</p>}
 			</div>
 		);
 	});
 
-	return <div className="m-4 h-screen flex flex-col">{renderItems}</div>;
+	return <div className="w-96 rounded-md shadow border">{renderItems}</div>;
 };
 
 export default Accordion;

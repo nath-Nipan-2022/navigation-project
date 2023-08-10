@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import {
   MdArrowOutward,
   MdBookmark,
@@ -16,7 +16,11 @@ function ButtonPage() {
   };
 
   return (
-    <div className="ButtonPage text-black flex p-10 items-center justify-between">
+    <>
+      <h2 className="text-lg text-slate-600 p-4 font-semibold ">
+					Button Page
+				</h2>
+    <div className="ButtonPage text-black flex flex-wrap p-4 py-10 items-center gap-4">
       <Button primary rounded onMouseOver={handleClick}>
         <MdBookmark />
         Click Me!
@@ -37,7 +41,8 @@ function ButtonPage() {
         <MdDeleteOutline />
         Delete
       </Button>
-    </div>
+      </div>
+      </>
   );
 }
 

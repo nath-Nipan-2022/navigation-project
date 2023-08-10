@@ -34,10 +34,11 @@ const TablePage = () => {
   ];
 
   return (
-    <div className="p-5">
-      <SortableTable data={data} config={config} />
-    </div>
-  );
+		<div className="p-5">
+			<h2 className="text-lg text-slate-600 p-4 font-semibold ">Sortable Table Page</h2>
+			<SortableTable data={data} config={config} />
+		</div>
+	);
 };
 
 export default TablePage;

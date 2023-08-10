@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import Link from "./Link";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import Panal from "./Panal";
 // todo: show the dropdown on click - as Like ## input field ##
@@ -32,30 +33,31 @@ const Dropdown = ({ options, onChange, selectedOption }) => {
 
 	let renderItems = options.map((option, i) => {
 		return (
-			<Panal
+			<Link
+				to={option.path}
 				key={i}
-				className="hover:text-blue-700 hover:bg-slate-100"
+				className="p-2 px-3 hover:text-blue-700 hover:bg-slate-100"
 				onClick={() => handleOptionClick(option)} // Pass the selectedOption
 			>
 				{option.label}
-			</Panal>
+			</Link>
 		);
 	});
 
 	return (
 		<div
 			ref={dropElement}
-			className="w-52 pt-6 cursor-pointer"
-			// onMouseEnter={() => setIsOpened(true)}
-			// onMouseLeave={() => setIsOpened(false)}
-			onClick={() => setIsOpened((prev) => !prev)} // toggle the dropdown
+			className="cursor-pointer w-56"
+			onMouseEnter={() => setIsOpened(true)}
+			onMouseLeave={() => setIsOpened(false)}
+			// onClick={() => setIsOpened((prev) => !prev)} // toggle the dropdown
 		>
 			<Panal className="ring-1 ring-slate-400 hover:ring-blue-400 flex items-center justify-between rounded group">
 				{selectedOption?.label || "Select..."}
 				<MdKeyboardArrowDown className="text-xl transition group-hover:text-blue-500" />
 			</Panal>
 			{isOpened && (
-				<div className="ring-1 ring-slate-300 mt-1.5 flex flex-col divide-y shadow-md overflow-hidden rounded">
+				<div className="text-center ring-1 ring-slate-300 mt-1.5 flex flex-col divide-y shadow-md overflow-hidden rounded">
 					{renderItems}
 				</div>
 			)}

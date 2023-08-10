@@ -1,7 +1,7 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Button from "../components/Button";
 import Modal from "../components/Modal";
-Button;
+import Accordion from "../components/Accordion";
 
 const ModalPage = () => {
 	const [showModal, setShowModal] = useState(false);
@@ -11,12 +11,13 @@ const ModalPage = () => {
 	};
 
 	const modal = (
-		<Modal onClose={closeModal} className="bg-blue-100">
-			<h2 className="text-lg ">Hi, I am Modal</h2>
-			<p className="text-gray-600 text-sm mb-1">
-				Lorem ipsum dolor sit amet. Lorem ipsum dolor sit.
+		<Modal onClose={closeModal} className="bg-white w-96">
+			<h2 className="text-lg font-bold text-slate-700 leading-5">Hi, I am Modal</h2>
+			<p className="text-gray-500">
+				Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate,
+				sapiente architecto earum ea quaerat reprehenderit.
 			</p>
-			<Button secondary onClick={closeModal}>
+			<Button primary className={"rounded-md"} onClick={closeModal}>
 				Submit
 			</Button>
 		</Modal>
@@ -24,6 +25,7 @@ const ModalPage = () => {
 
 	return (
 		<div className="p-10">
+			<h2 className="text-lg text-slate-600 p-4 font-semibold ">Modal Page</h2>
 			<Button secondary onClick={() => setShowModal(true)}>
 				Open Modal
 			</Button>

@@ -18,9 +18,9 @@ const SortableTable = (props) => {
 				header: () => (
 					<th
 						onClick={() => setSortColumn(column.label)}
-						className='cursor-pointer hover:bg-slate-100'
+						className="text-slate-800 cursor-pointer hover:bg-slate-800 hover:text-white"
 					>
-						<div className='p-1 flex items-center'>
+						<div className="px-4 flex items-center">
 							{getIcons(column.label, sortBy, sortOrder)}
 							{column.label}
 						</div>

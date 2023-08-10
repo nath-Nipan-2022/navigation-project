@@ -17,7 +17,7 @@ const Button = ({
   // classnames library helps in heandling the classes for different buttons
   const classes = className(
     rest.className,
-    `flex items-center gap-1 py-1 px-4 shadow border-2 transition`, // default classes
+    `flex items-center gap-1 py-1 px-4 transition`, // default classes
     {
       "border-blue-500 bg-blue-500 hover:bg-blue-600 hover:border-blue-600":
         primary,
